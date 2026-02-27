@@ -7,10 +7,21 @@
 开发环境：
 ```bash
 cp .env.example .env
-# 设置 LOGIN_TOKEN
+# 设置登录 Token
+LOGIN_TOKEN=你的访问凭证
+
+# （可选）设置跨子域共享 Cookie 的域名
+# 例如希望在 auth.example.com 和 app.example.com 之间共享：
+COOKIE_DOMAIN=.example.com
 ```
 
-生产环境：创建 `.env` 文件设置 `LOGIN_TOKEN`
+生产环境：创建 `.env` 文件设置：
+
+```bash
+LOGIN_TOKEN=你的访问凭证
+# 可选，如果需要跨子域共享 Cookie 则配置
+COOKIE_DOMAIN=.example.com
+```
 
 ## 快速开始
 

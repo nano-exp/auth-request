@@ -75,6 +75,8 @@ export default function LoginPage() {
             <Input
               id="token"
               label="访问凭证"
+              type="password"
+              autoComplete="current-password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
             />

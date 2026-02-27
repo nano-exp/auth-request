@@ -6,10 +6,12 @@ export async function POST(request: NextRequest) {
     const envToken = process.env.LOGIN_TOKEN ?? ''
 
     if (token && token === envToken) {
+      const cookieDomain = process.env.COOKIE_DOMAIN
       const maxAge = 60 * 60 * 24 // 1 day
       const response = NextResponse.json({ ok: true })
       response.cookies.set('token', token, {
         httpOnly: true,
+        ...(cookieDomain ? { domain: cookieDomain } : {}),
         path: '/',
         maxAge,
         sameSite: 'lax',
