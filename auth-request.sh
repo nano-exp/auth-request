@@ -2,4 +2,4 @@
 cd "$(dirname "$0")" || exit 1
 
 bun run build
-bun start
+PORT=3500 bun start
