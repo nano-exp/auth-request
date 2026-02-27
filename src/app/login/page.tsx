@@ -40,47 +40,62 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 relative bg-[#fafafa]">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative bg-[#fafafa]">
       <Background />
 
-      <Card>
-        {/* Brand */}
-        <div className="flex items-center justify-center gap-[0.625rem] mb-10">
-          <LockIcon className="w-9 h-9 text-[#18181b]" />
-          <span className="text-[1.125rem] font-bold tracking-[0.02em] text-[#18181b]">Auth</span>
-        </div>
-
-        {/* Header */}
-        <div className="text-center mb-9">
-          <h1 className="text-[2.5rem] font-semibold text-[#18181b] tracking-[-0.02em] leading-[1.1]">登录</h1>
-          <p className="text-[0.875rem] text-[#71717a] mt-2">请输入访问凭证</p>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <Input
-            id="token"
-            label="访问凭证"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-          />
-
-          {error && <ErrorMessage message={error} />}
-
-          <Button type="submit" disabled={isLoading}>
-            <span>{isLoading ? '登录中...' : '继续'}</span>
-            <ArrowIcon className="w-[18px] h-[18px]" />
-          </Button>
-        </form>
-
-        {/* Footer */}
-        <div className="mt-8 flex justify-center">
-          <div className="flex items-center gap-1.5 text-[0.6875rem] font-medium text-[#a1a1aa] uppercase tracking-widest">
+      <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-5xl relative z-10">
+        {/* Left - Brand & Intro (right on mobile) */}
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-sm w-full lg:w-auto">
+          <div className="flex items-center gap-[0.625rem] mb-6">
+            <LockIcon className="w-12 h-12 text-[#18181b]" />
+            <span className="text-[1.5rem] font-bold tracking-[0.02em] text-[#18181b]">Auth</span>
+          </div>
+          <h2 className="text-[2rem] font-semibold text-[#18181b] tracking-[-0.02em] leading-[1.1] mb-4">
+            安全访问
+          </h2>
+          <p className="text-[1rem] text-[#71717a] leading-relaxed">
+            输入您的访问凭证以继续。这是一个受保护的区域，请妥善保管您的登录信息。
+          </p>
+          <div className="mt-8 flex items-center gap-1.5 text-[0.6875rem] font-medium text-[#a1a1aa] uppercase tracking-widest">
             <ShieldIcon />
-            安全
+            安全可靠
           </div>
         </div>
-      </Card>
+
+        {/* Right - Login Form (top on mobile) */}
+        <Card>
+          {/* Header */}
+          <div className="text-center mb-9">
+            <h1 className="text-[2.5rem] font-semibold text-[#18181b] tracking-[-0.02em] leading-[1.1]">登录</h1>
+            <p className="text-[0.875rem] text-[#71717a] mt-2">请输入访问凭证</p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <Input
+              id="token"
+              label="访问凭证"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+            />
+
+            {error && <ErrorMessage message={error} />}
+
+            <Button type="submit" disabled={isLoading}>
+              <span>{isLoading ? '登录中...' : '继续'}</span>
+              <ArrowIcon className="w-[18px] h-[18px]" />
+            </Button>
+          </form>
+
+          {/* Footer */}
+          <div className="mt-8 flex justify-center">
+            <div className="flex items-center gap-1.5 text-[0.6875rem] font-medium text-[#a1a1aa] uppercase tracking-widest">
+              <ShieldIcon />
+              安全
+            </div>
+          </div>
+        </Card>
+      </div>
     </div>
   )
 }
