@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Background } from '@/components/Background'
 import { Card } from '@/components/Card'
 import { Input } from '@/components/Input'
@@ -11,6 +11,7 @@ import { LockIcon, ShieldIcon, ArrowIcon } from '@/components/icons'
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [token, setToken] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -28,7 +29,8 @@ export default function LoginPage() {
       })
 
       if (res.ok) {
-        router.push('/protected')
+        const redirect = searchParams.get('redirect')
+        router.push(redirect || '/protected')
       } else {
         setError('Token 无效')
       }
