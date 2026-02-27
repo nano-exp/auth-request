@@ -2,6 +2,12 @@
 
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
+import { Background } from '@/components/Background'
+import { Card } from '@/components/Card'
+import { Input } from '@/components/Input'
+import { Button } from '@/components/Button'
+import { ErrorMessage } from '@/components/ErrorMessage'
+import { LockIcon, ShieldIcon, ArrowIcon } from '@/components/icons'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -34,78 +40,47 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="login-container">
-      <div className="login-bg">
-        <div className="bg-shape bg-shape-1" />
-        <div className="bg-shape bg-shape-2" />
-        <div className="bg-shape bg-shape-3" />
-        <div className="bg-dots" />
-      </div>
+    <div className="min-h-screen flex items-center justify-center p-8 relative bg-[#fafafa]">
+      <Background />
 
-      <div className="login-card">
-        <div className="card-inner">
-          <div className="brand">
-            <div className="brand-icon">
-              <svg viewBox="0 0 40 40" fill="none">
-                <rect x="4" y="4" width="32" height="32" rx="8" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4 4"/>
-                <circle cx="20" cy="20" r="8" fill="currentColor" opacity="0.15"/>
-                <path d="M20 12v16M12 20h16" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <span className="brand-name">Auth</span>
-          </div>
+      <Card>
+        {/* Brand */}
+        <div className="flex items-center justify-center gap-[0.625rem] mb-10">
+          <LockIcon className="w-9 h-9 text-[#18181b]" />
+          <span className="text-[1.125rem] font-bold tracking-[0.02em] text-[#18181b]">Auth</span>
+        </div>
 
-          <div className="header">
-            <h1 className="title">登录</h1>
-            <p className="subtitle">请输入访问凭证</p>
-          </div>
+        {/* Header */}
+        <div className="text-center mb-9">
+          <h1 className="text-[2.5rem] font-semibold text-[#18181b] tracking-[-0.02em] leading-[1.1]">登录</h1>
+          <p className="text-[0.875rem] text-[#71717a] mt-2">请输入访问凭证</p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="form">
-            <div className="input-group">
-              <input
-                id="token"
-                type="text"
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                className="input"
-                placeholder=""
-              />
-              <label htmlFor="token" className="label">访问凭证</label>
-              <div className="input-border" />
-            </div>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <Input
+            id="token"
+            label="访问凭证"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+          />
 
-            {error && (
-              <div className="error">
-                <span className="error-dot" />
-                {error}
-              </div>
-            )}
+          {error && <ErrorMessage message={error} />}
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="button"
-            >
-              <span>{isLoading ? '登录中...' : '继续'}</span>
-              <span className="button-arrow">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </span>
-            </button>
-          </form>
+          <Button type="submit" disabled={isLoading}>
+            <span>{isLoading ? '登录中...' : '继续'}</span>
+            <ArrowIcon className="w-[18px] h-[18px]" />
+          </Button>
+        </form>
 
-          <div className="footer">
-            <div className="footer-badge">
-              <svg viewBox="0 0 16 16" fill="none" width="12" height="12">
-                <path d="M8 1l6.928 4v4c0 3.832-2.928 6.928-6.928 7-3.84-.072-6.8-3.168-6.928-7V5L8 1z" stroke="currentColor" strokeWidth="1.2"/>
-                <path d="M6 8l2 2 4-4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              安全
-            </div>
+        {/* Footer */}
+        <div className="mt-8 flex justify-center">
+          <div className="flex items-center gap-1.5 text-[0.6875rem] font-medium text-[#a1a1aa] uppercase tracking-widest">
+            <ShieldIcon />
+            安全
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   )
 }
