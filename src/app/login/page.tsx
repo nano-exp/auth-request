@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type FormEvent } from 'react'
+import { Suspense, useState, type FormEvent } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Background } from '@/components/Background'
 import { Card } from '@/components/Card'
@@ -9,7 +9,7 @@ import { Button } from '@/components/Button'
 import { ErrorMessage } from '@/components/ErrorMessage'
 import { LockIcon, ShieldIcon, ArrowIcon } from '@/components/icons'
 
-export default function LoginPage() {
+function LoginPageInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [token, setToken] = useState('')
@@ -101,5 +101,13 @@ export default function LoginPage() {
         </Card>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginPageInner />
+    </Suspense>
   )
 }
