@@ -4,10 +4,13 @@
 
 ## 环境变量
 
+开发环境：
 ```bash
-cp .env.local.example .env.local
+cp .env.example .env
 # 设置 LOGIN_TOKEN
 ```
+
+生产环境：创建 `.env` 文件设置 `LOGIN_TOKEN`
 
 ## 快速开始
 
