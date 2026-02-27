@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
-  title: '登录',
+  title: {
+    default: 'Nano Exp',
+    template: '%s | Nano Exp',
+  },
 }
 
 export default function RootLayout({
