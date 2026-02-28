@@ -10,6 +10,9 @@ cp .env.example .env
 # 设置登录 Token
 LOGIN_TOKEN=你的访问凭证
 
+# （可选）设置 Cookie 名称，默认 auth-token
+COOKIE_NAME=auth-token
+
 # （可选）设置跨子域共享 Cookie 的域名
 # 例如希望在 auth.example.com 和 app.example.com 之间共享：
 COOKIE_DOMAIN=.example.com
@@ -19,6 +22,8 @@ COOKIE_DOMAIN=.example.com
 
 ```bash
 LOGIN_TOKEN=你的访问凭证
+# 可选，Cookie 名称
+COOKIE_NAME=auth-token
 # 可选，如果需要跨子域共享 Cookie 则配置
 COOKIE_DOMAIN=.example.com
 ```
