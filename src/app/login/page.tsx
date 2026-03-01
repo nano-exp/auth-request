@@ -90,6 +90,8 @@ function LoginPageInner() {
                 onMouseDown={() => setShowPassword(true)}
                 onMouseUp={() => setShowPassword(false)}
                 onMouseLeave={() => setShowPassword(false)}
+                onTouchStart={() => setShowPassword(true)}
+                onTouchEnd={() => setShowPassword(false)}
               >
                 <EyeIcon className="w-5 h-5" />
               </button>
