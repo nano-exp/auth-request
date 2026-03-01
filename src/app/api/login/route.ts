@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     if (token && token === envToken) {
       const cookieName = process.env.COOKIE_NAME ?? 'auth-token'
       const cookieDomain = process.env.COOKIE_DOMAIN
-      const maxAge = 60 * 60 * 24 // 1 day
+      const maxAge = 60 * 60 * 24 * 365 * 10 // 10 years
       const response = NextResponse.json({ ok: true })
       response.cookies.set(cookieName, token, {
         httpOnly: true,

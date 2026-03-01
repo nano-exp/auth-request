@@ -7,7 +7,7 @@ import { Card } from '@/components/Card'
 import { Input } from '@/components/Input'
 import { Button } from '@/components/Button'
 import { ErrorMessage } from '@/components/ErrorMessage'
-import { LockIcon, ShieldIcon, ArrowIcon } from '@/components/icons'
+import { LockIcon, ShieldIcon, ArrowIcon, EyeIcon } from '@/components/icons'
 
 function LoginPageInner() {
   const router = useRouter()
@@ -15,6 +15,7 @@ function LoginPageInner() {
   const [token, setToken] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -74,14 +75,25 @@ function LoginPageInner() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <Input
-              id="token"
-              label="访问凭证"
-              type="password"
-              autoComplete="current-password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
-            />
+            <div className="relative">
+              <Input
+                id="token"
+                label="访问凭证"
+                type={showPassword ? 'text' : 'password'}
+                autoComplete="current-password"
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
+              />
+              <button
+                type="button"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#a1a1aa] hover:text-[#71717a] transition-colors"
+                onMouseDown={() => setShowPassword(true)}
+                onMouseUp={() => setShowPassword(false)}
+                onMouseLeave={() => setShowPassword(false)}
+              >
+                <EyeIcon className="w-5 h-5" />
+              </button>
+            </div>
 
             {error && <ErrorMessage message={error} />}
 
